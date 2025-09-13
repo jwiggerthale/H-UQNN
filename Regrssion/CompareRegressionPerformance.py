@@ -1,6 +1,6 @@
 from modules import BayesianNN, EasyNN
-from UQNN_det_au_model_reg import UQNN
-from utils import nll_loss, get_index_train_test_path, get_dataloader, get_index_train_test_path, get_data_loader_from_pandas
+from HUQNN import HUQNN
+from utils import get_data_loader_from_pandas
 
 import pandas as pd
 import torch
@@ -69,22 +69,22 @@ plt.ylabel('Prediction')
 plt.show()
 
 
-UQNN_preds = []
-UQNN_labels = []
-model = UQNN(file_path = 'TestUQNN')
+HUQNN_preds = []
+HUQNN_labels = []
+model = HUQNN(file_path = 'TestHUQNN')
 
-model.load_state_dict(torch.load(f'./UQNN_softplus_lambda_r_0.4_lambda_u_6_spli_gal/combined_epoch_48_ev_reg_86_ev_uncertainty_40.pth'))
+model.load_state_dict(torch.load(f'./HUQNN_softplus_lambda_r_0.4_lambda_u_6_spli_gal/combined_epoch_48_ev_reg_86_ev_uncertainty_40.pth'))
 
 with torch.no_grad():
     for x, y in iter(test_loader):
         mu, au, eu = model.forward(x)
-        UQNN_preds.extend(mu.tolist())
-        UQNN_labels.extend(y.tolist())
+        HUQNN_preds.extend(mu.tolist())
+        HUQNN_labels.extend(y.tolist())
         
         
-ev_UQNN = explained_variance_score(UQNN_preds, UQNN_labels)
-plt.scatter(UQNN_labels, UQNN_preds)
-plt.title(f'Predictions of UQNNN Over Real Values (EV: {ev_UQNN})')
+ev_HUQNN = explained_variance_score(HUQNN_preds, HUQNN_labels)
+plt.scatter(HUQNN_labels, HUQNN_preds)
+plt.title(f'Predictions of H-UQNNN Over Real Values (EV: {ev_HUQNN})')
 plt.xlabel('Real Value')
 plt.ylabel('Prediction')
 plt.show()
@@ -102,8 +102,8 @@ axes[1].set_title(f'Heteroscedastic Model (EV: {H_ev:.4f})', fontsize = 20)
 axes[1].set_xlabel('Real Value', fontsize = 20)
 axes[1].set_ylabel('Prediction', fontsize = 20)
 
-axes[2].scatter(UQNN_labels, UQNN_preds)
-axes[2].set_title(f'H-UQNN (EV: {ev_UQNN:.4f})', fontsize = 20)
+axes[2].scatter(HUQNN_labels, HUQNN_preds)
+axes[2].set_title(f'H-UQNN (EV: {ev_HUQNN:.4f})', fontsize = 20)
 axes[2].set_xlabel('Real Value', fontsize = 20)
 axes[2].set_ylabel('Prediction', fontsize = 20)
 
