@@ -7,7 +7,7 @@ Created on Sat Aug  2 15:52:12 2025
 """
 
 
-from HUQNN import HUQNN as UQNN
+from HUQNN import HUQNN
 import torch
 import pandas as pd
 from utils import get_data_loader_from_pandas
@@ -20,7 +20,7 @@ import os
 parser = argparse.ArgumentParser()
 parser.add_argument('--lambda_r', type = float, default = 0.5)
 parser.add_argument('--lambda_u', type = float, default = 0.5)
-parser.add_argument('--model_path', type = str, default = 'TestUQNN')
+parser.add_argument('--model_path', type = str, default = 'TestHUQNN')
 
 args = parser.parse_args()
 
@@ -30,7 +30,7 @@ lambda_u = args.lambda_u
 if args.model_path: 
     model_path = args.model_path    
 else:
-    model_path = f'UQNN_lambda_r_{lambda_r}_lambda_u_{lambda_u}'
+    model_path = f'H_UQNN_lambda_r_{lambda_r}_lambda_u_{lambda_u}'
 
 
 
@@ -43,7 +43,7 @@ test = pd.read_csv('TestDataGal.csv')
 
 train_loader, test_loader, y_train_mean, y_train_std, x_train_mean, x_train_std = get_data_loader_from_pandas(train, test)
 
-model = UQNN(lambda_r = lambda_r, 
+model = HUQNN(lambda_r = lambda_r, 
              lambda_u = lambda_u, 
              file_path = model_path)
 
