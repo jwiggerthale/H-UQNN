@@ -36,8 +36,8 @@ else:
 '''
 This is the OOD data
 '''
-test = pd.read_csv('TestDataOutliers.csv').drop('Unnamed: 0', axis = 1)
-train = pd.read_csv('TrainDataNoise_2.csv').drop('Unnamed: 0', axis = 1)
+test = pd.read_csv('./data/TestDataOutliers.csv').drop('Unnamed: 0', axis = 1)
+train = pd.read_csv('./data/TrainDataNoise.csv').drop('Unnamed: 0', axis = 1)
 train = train.iloc[:-60, :]
 
 train_loader, test_loader, y_train_mean, y_train_std, x_train_mean, x_train_std = get_data_loader_from_pandas(train, test)
@@ -92,7 +92,7 @@ axes[0][1].set_title('Aleatoric Uncertainty of Model on Training Data and OOD Da
 
 
 #noisy data
-train = pd.read_csv('TrainDataNoise_2.csv').drop('Unnamed: 0', axis = 1)
+train = pd.read_csv('./data/TrainDataNoise.csv').drop('Unnamed: 0', axis = 1)
 test = train.iloc[-60:, :]
 train = train.iloc[:-60, :]
 train_loader, test_loader, y_train_mean, y_train_std, x_train_mean, x_train_std = get_data_loader_from_pandas(train, test)
