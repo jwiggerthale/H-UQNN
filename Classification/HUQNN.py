@@ -54,14 +54,18 @@ class HUQNN(nn.Module):
             num_features = 512
         self.mu = nn.Sequential(nn.Linear(num_features, 80), 
                                 nn.ReLU(), 
+                                nn.Dropout(0.2),
                                 nn.Linear(80, 60),
                                 nn.ReLU(), 
+                                nn.Dropout(0.2),
                                 nn.Linear(60, num_classes)
                                 )
         self.log_var = nn.Sequential(nn.Linear(num_features, 80),
                                     nn.ReLU(), 
+                                     nn.Dropout(0.2),
                                     nn.Linear(80, 60),
                                     nn.ReLU(), 
+                                     nn.Dropout(0.2),
                                     nn.Linear(60, num_classes), 
                                     nn.Softplus()
                                     )
