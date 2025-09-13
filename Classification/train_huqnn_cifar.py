@@ -7,7 +7,7 @@ Created on Tue Aug 19 18:47:55 2025
 """
 
 
-from DataUtils import get_minst_dataloader,load_cifar, cifar_ds
+from modules.data_utils import get_minst_dataloader,load_cifar, cifar_ds
 from HUQNN import HUQNN
 import torch
 from torch.utils.data import DataLoader
