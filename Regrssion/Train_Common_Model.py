@@ -72,8 +72,8 @@ def train_model(model,
 
 
 #Boston Housing dataset split according to https://github.com/yaringal/DropoutUncertaintyExps, split 0)
-test = pd.read_csv('TestData.csv')
-train = pd.read_csv('TrainData.csv')
+test = pd.read_csv('./data/TestDataGal.csv')
+train = pd.read_csv('/data/TrainDataGal.csv')
 
 train_loader, test_loader, y_train_mean, y_train_std, x_train_mean, x_train_std = get_data_loader_from_pandas(train, test)
 
