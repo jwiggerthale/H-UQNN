@@ -31,12 +31,12 @@ else:
 
 # Select the dataset you want to use 
 # 1) prepared dataset with noisy data in training data and test data only outliers
-test = pd.read_csv('TestDataOutliers.csv').drop('Unnamed: 0', axis = 1)
-train = pd.read_csv('TrainDataNoise_2.csv').drop('Unnamed: 0', axis = 1)
+test = pd.read_csv('./data/TestDataOutliers.csv').drop('Unnamed: 0', axis = 1)
+train = pd.read_csv('./data/TrainDataNoise.csv').drop('Unnamed: 0', axis = 1)
 
 # 2) common data (split following https://github.com/yaringal/DropoutUncertaintyExps
-#test = pd.read_csv('TestDataGal.csv')
-#train = pd.read_csv('TrainDataGal.csv')
+#test = pd.read_csv('./data/TestDataGal.csv')
+#train = pd.read_csv('./data/TrainDataGal.csv')
 
 # Create data loader from the data 
 train_loader, test_loader, y_train_mean, y_train_std, x_train_mean, x_train_std = get_data_loader_from_pandas(train, test)
