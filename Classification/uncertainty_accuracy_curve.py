@@ -31,7 +31,7 @@ import os
 import datetime
 from modules.lenet import Het_Model
 from modules.uncertainty_utils import mc_dropout_with_heteroscedastic
-from DataUtils import load_cifar, cifar_ds
+from modules.data_utils import load_cifar, cifar_ds
 from scipy.stats import spearmanr
 
 import warnings
