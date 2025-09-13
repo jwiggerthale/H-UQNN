@@ -17,8 +17,8 @@ from torch.utils.data import DataLoader
 import numpy as np
 import os
 
-from modules.lenet import LeNet5
-from modules.ResNetCIFAR import wide_resnet_c_26_10
+from modules.lenet import LeNet5 #feature extractor for mnist
+from modules.ResNet18 import ResNet18 #feature extractor for cifar-10
 from modules.uncertainty_utils import heteroscedastic_ce
 
 
@@ -50,8 +50,8 @@ class HUQNN(nn.Module):
             self.feature_extractor = LeNet5()
             num_features = 84
         elif task.lower() == 'cifar':
-            self.feature_extractor = wide_resnet_c_26_10(in_chans = 3)
-            num_features = self.feature_extractor.num_features
+            self.feature_extractor = ResNet18()
+            num_features = 512
         self.mu = nn.Sequential(nn.Linear(num_features, 80), 
                                 nn.ReLU(), 
                                 nn.Linear(80, 60),
