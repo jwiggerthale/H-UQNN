@@ -27,7 +27,7 @@ import plotly.io as pio
 pio.renderers.default = 'browser'  
 
 
-from utils import nll_loss, get_index_train_test_path, get_dataloader, get_index_train_test_path, get_data_loader_from_pandas
+from utils import get_data_loader_from_pandas
 from modules import EasyNN
 
     
