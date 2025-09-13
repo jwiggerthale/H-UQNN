@@ -27,7 +27,6 @@ class HUQNN(nn.Module):
                  mc_samples: int = 20, 
                  num_augment: int = 15, 
                  lambda_c: float = 0.5, 
-                 reg_weight: float = 2.0, 
                  lambda_eu: float = 0.5, 
                  device: str = 'cpu', #Implement usage of correct device
                  steps: int = 1000, 
@@ -39,7 +38,6 @@ class HUQNN(nn.Module):
         #Hyperparameters
         self.lambda_c = lambda_c
         self.lambda_eu = lambda_eu
-        self.reg_weight = reg_weight
                 
         self.num_classes = num_classes
         
