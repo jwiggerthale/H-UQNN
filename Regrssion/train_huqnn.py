@@ -7,7 +7,7 @@ Created on Sat Aug  2 14:16:58 2025
 """
 
 
-from H_UQNN import H_UQNN
+from HUQNN import HUQNN
 import pandas as pd
 from utils import get_data_loader_from_pandas
 import argparse
@@ -42,7 +42,7 @@ train = pd.read_csv('TrainDataNoise_2.csv').drop('Unnamed: 0', axis = 1)
 train_loader, test_loader, y_train_mean, y_train_std, x_train_mean, x_train_std = get_data_loader_from_pandas(train, test)
 
 # create model
-model = H_UQNN(lambda_r = lambda_r, 
+model = HUQNN(lambda_r = lambda_r, 
              lambda_u = lambda_u, 
              file_path = model_path)
 
