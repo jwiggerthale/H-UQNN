@@ -47,10 +47,6 @@ train_loader, test_loader = get_minst_dataloader(train_path = train_path,
 #create model
 model = HUQNN(file_path = 'TestModel')
 
-'UQNN_AugmentedData_bs_16_lambda_5.0_0.1_adadelta/UQNN_epoch_2_loss_111.pth'
-
-
-
 
 model_name = './MNIST_HUQNN/ModelModifiedData.pth
     
