@@ -21,4 +21,4 @@ with $\mu(f)$ a heteroscedastic predictive distribution.
 
 The structure of H-UQNN is presented below: 
 
-<img src="./Ims/H-UQNN Structure.jpg" alt="Structure of H-UQNN" style="width:50px; vertical-align:middle;">
+<img src="./Ims/H-UQNN Structure.jpg" alt="Structure of H-UQNN" style="width:500px; vertical-align:middle;">
