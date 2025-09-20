@@ -1,9 +1,6 @@
 import torch.nn as nn
 import torch
 
-'''
-Basic block to build ResNet
-'''
 class BasicBlock(nn.Module):
     def __init__(self, in_channels, out_channels, stride=1):
         super(BasicBlock, self).__init__()
@@ -30,18 +27,11 @@ class BasicBlock(nn.Module):
         out = self.relu(out)
         return out
 
-'''
-ResNet18 as basis for heteroscedastic model and H-UQNN
-initialize with: 
-  num_classes: int = 10 --> number of classes to be distinguished
-Note: Model has fully connected layer which is not used
-  --> forward pass only return features
-  --> features are further processed by H-UQNN's repsectively heteroscedastic model's heads
-'''
 class ResNet18(nn.Module):
     def __init__(self, num_classes=10):
         super(ResNet18, self).__init__()
         self.in_channels = 64
+        self.drop = nn.Dropout(0.2)
         self.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(64)
         self.relu = nn.ReLU(inplace=True)
@@ -63,16 +53,19 @@ class ResNet18(nn.Module):
             self.in_channels = out_channels
         return nn.Sequential(*layers)
 
-    # forward pass (note: does only return features)
     def forward(self, x):
         out = self.conv1(x)
         out = self.bn1(out)
         out = self.relu(out)
         out = self.maxpool(out)
+        out = self.drop(out)
         
         out = self.layer1(out)
+        out = self.drop(out)
         out = self.layer2(out)
+        out = self.drop(out)
         out = self.layer3(out)
+        out = self.drop(out)
         out = self.layer4(out)
         
         out = self.avgpool(out)
@@ -80,7 +73,7 @@ class ResNet18(nn.Module):
         return out
     
 
-# common classification model with dropout to model EU 
+
 class MC_Model(nn.Module):
     def __init__(self, num_classes=10):
         super(MC_Model, self).__init__()
