@@ -13,7 +13,7 @@ m. f is an internal representation of the model. Given this representation, the
 heads is to predict the distribution of the target variable as well
 as the EU of the model. The distribution of the target variable
 is given by the estimated mean µ(f) and the estimated variance
-log \sigma_{2au}(f) of the target variable and therefore includes AU.
+log $$\sigma_{au}^2(f) of the target variable and therefore includes AU.
 To do so, the three heads operate as follows:
 • The µ-head predicts the target mean µ(f).
 • The log σ
