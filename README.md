@@ -6,7 +6,7 @@ To reproduce our results just clone the repo and execute the apprpriate test_xx.
 
 # Idea of H-UQNN
 H-UQNN is a three-headed model with a shared feature
-extractor. Given an input vector $ x ∈ R^n $, the feature extractor
+extractor. Given an input vector $x ∈ R^n$, the feature extractor
 maps it to a representation $f ∈ R^m $. $f$ is an internal representation of the model. Given this representation, the task of the
 heads is to predict the distribution of the target variable as well
 as the EU of the model. The distribution of the target variable
